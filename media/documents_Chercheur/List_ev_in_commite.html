@@ -1,0 +1,31 @@
+
+
+<h1> hna njbde gaaa3 les evl li nzadoo + nenjm nzide </h1>
+
+
+
+<div class="container">
+
+	{{List_evlin_this_Cm}}
+<br>
+
+{% for a in Commite.evaluteur_list.all%}
+
+         evaluatuer : {{a}}
+    <br>
+{% enfor %}
+
+  <br><br><br>
+<div class="col-sm-6">
+                                  
+                        <a href="{% url 'SEnd_Confirmation' %}" class="btn btn-success"><i class="material-icons"></i> <span>>
+                         <<< Ajouter  autre Evaluteurs >>> </span></a>
+                                  
+                </div>
+              <br><br><br>
+
+
+
+
+
+</div>

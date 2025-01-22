@@ -1,0 +1,246 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+
+<div class="content">
+        <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade">
+              <div class="card-header text-center">
+                <h4 class="card-title">
+Notifications list: Researchers </h4>
+                  <p class="card-category">
+All the following notifications are declared by Administration (by Us) for researcher: </p>
+              </div>
+              <div class="card-body">
+                <div class="col-sm-12 ">
+
+                         <a href="{% url 'List_Notifeé' %}" class="btn btn-warning"> Count   : {{ Nbr_Notification_chr }}  Notification</a>
+
+       <a href="{% url 'Creat_Notifeé' %}" class="btn btn-success"><i class="material-icons"></i> <span>Declare Notification </span></a>
+
+
+
+                </div>
+                <div class="table-responsive table-upgrade">
+                  <table class="table">
+                    <thead>
+                      <th></th>
+                      <th class="text-center">Delete</th>
+                      <th class="text-center">Detailes</th>
+                              <th></th>
+                      <th class="text-center"> To </th>
+                                <th></th>
+                      <th class="text-center"> Stat</th>
+
+                    </thead>
+                    <tbody>
+
+                 {% for n in Notification_detail_Makani_CF_  %}
+                        {% if n.user.is_chercheur %}
+
+                      <tr>
+                        <td>
+                         <a href="{% url 'Detaille_Notifeé' n.id %}">
+                          Title de notification  : {{n.title}}
+                      </a>
+                      </td>
+
+
+                        <td class="text-center">
+                          <a href="{% url 'delete_Notiféé' n.id %}">
+                          <i class="tim-icons icon-trash-simple text-danger"></i> </a></td>
+
+<td></td>
+
+                         <td class="text-center">
+                         <a href="{% url 'Detaille_Notifeé' n.id  %}">
+                           <i class="fa fa-search "></i>
+                            </a></td>
+                            <td></td>
+                   <td>
+
+                          Chercheur : {{ n.user }}
+                   </td>
+                   <td></td>
+                     {% if n.As_viewed %}
+                        <td> <p style="color:blue;"> See </p></td>
+                      {% else %}
+                         <td> <p style="color:red;"> Not See</p> </td>
+                      </tr>
+                {% endif %}
+                              {% endif %}
+                        {% endfor %}
+</tbody>
+</table>
+
+
+
+
+
+                        <ul class="pagination">
+
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+<!-- end Pagination -->
+
+                </div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="content">
+        <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade">
+              <div class="card-header text-center">
+
+                <h4 class="card-title">Notifications list: : Evaluateurs  </h4>
+
+                  <p class="card-category"> All the following notifications are declared by Administration (by Us) for researcher:</p>
+              </div>
+              <div class="card-body">
+                <div class="col-sm-12 ">
+
+                                <a href="{% url 'List_Notifeé' %}" class="btn btn-warning"> Count: {{ Nbr_Notification_eval }} Noification </a>
+                     <a href="{% url 'Creat_Notifeé' %}" class="btn btn-success"><i class="material-icons"></i> <span>Declare Notification </span></a>
+
+
+                </div>
+                <div class="table-responsive table-upgrade">
+                  <table class="table">
+                    <thead>
+                      <th></th>
+                      <th class="text-center">Delete</th>
+                      <th class="text-center">Detailes</th>
+                              <th></th>
+                      <th class="text-center"> To </th>
+                                <th></th>
+                      <th class="text-center"> Stat</th>
+
+
+                    </thead>
+                    <tbody>
+
+
+                          {% for n in Notification_detail_Makani_CF_  %}
+                        {% if n.user.is_evaluteur %}
+
+
+                      <tr>
+                        <td>
+                         <a href="{% url 'Detaille_Notifeé' n.id %}">
+                         Notification's  Title  : {{n.title}}
+                      </a>
+                      </td>
+
+
+                        <td class="text-center">
+                          <a href="{% url 'delete_Notiféé' n.id %}">
+                          <i class="tim-icons icon-trash-simple text-danger"></i> </a></td>
+
+
+
+                         <td class="text-center">
+                         <a href="{% url 'Detaille_Notifeé' n.id  %}">
+                           <i class="fa fa-search "></i>
+                            </a></td>
+                            <td></td>
+                   <td>
+
+                          Evaluateur : {{ n.user }}
+               </td>
+                   <td></td>
+                     {% if n.As_viewed %}
+                        <td> <p style="color:blue;"> See</p></td>
+                      {% else %}
+                         <td> <p style="color:red;">  Not See</p> </td>
+                      </tr>
+                {% endif %}
+                              {% endif %}
+                        {% endfor %}
+</tbody>
+</table>
+
+
+
+                        <ul class="pagination">
+
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+<!-- end Pagination -->
+
+   </div>
+   </div>
+   </div>
+   </div>
+
+</div>
+</div>
+</div>
+
+  <div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-cog fa-2x"> </i>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="header-title"> Sidebar Background</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger background-color">
+            <div class="badge-colors text-center">
+              <span class="badge filter badge-primary active" data-color="primary"></span>
+              <span class="badge filter badge-info" data-color="blue"></span>
+              <span class="badge filter badge-success" data-color="green"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="adjustments-line text-center color-change">
+          <span class="color-label">LIGHT MODE</span>
+          <span class="badge light-badge mr-2"></span>
+          <span class="badge dark-badge ml-2"></span>
+          <span class="color-label">DARK MODE</span>
+        </li>
+
+        <br>
+          <br>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}
+

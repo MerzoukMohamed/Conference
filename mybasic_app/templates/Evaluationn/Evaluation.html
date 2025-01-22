@@ -1,0 +1,62 @@
+{% extends 'Templevaluteur/Dachboardeval.html' %}
+
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container">
+<h3 style="color:red;">
+  Les regles note par :
+</h3>
+    <!--start section evaluation-->
+<p> - telcharger document dans detialle d'artcile : 
+  <h3> 
+    <a href="{% url 'evaluteur:Mes_article_Final_detailles' %}">ici </a> </p> 
+  </h3>
+<br>
+<p> - voir les point et les regles qui ajoute dans certain article poste</p>
+<br>
+<p> - Commence coriige puis envoye resultat </p>
+<br>
+
+<p>
+<br>
+    ("SA","Strong Accepted"),  <br>
+    ("A","Accepted"),<br>
+    ("AWC","Accepted With Conditions"),<br>
+    ("W","Week"),<br>
+    ("R","Refuse"),<br>
+    ("SR","Strong Refuse"),<br>
+        
+</p>
+
+<br>
+<h1>  
+ *** En plus N'est pas le droit de modifier ou bien supprime votre evaluation attention !!  ***
+ <br>
+<br> <br>
+ 
+
+<form class="post-form" method="POST">
+  {% csrf_token %}
+    {{form |crispy}}
+<div class="text-center">
+<button type="submit"class="btn btn-success"><i class="material-icons"></i> 
+
+Send Mon Evaluation  </button>
+</div>
+</form>
+</div>
+
+<script> var editor = new MediumEditor('.editable');</script>
+<br><br><br><br>
+
+
+
+
+
+
+
+
+
+   {% endblock %}

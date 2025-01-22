@@ -1,0 +1,276 @@
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% block body_block %}
+ <br><br><br>
+<div class="d-flex justify-content-center" style=" height:1700px" >
+    <div style=" height:1700px">
+<div class="">
+  <h1>Structure d'un article scientifique</h1>
+                      <header>
+                         <p class="regle_article text-left">
+                              1) Titre : Court et marquant .   
+                               <br>
+                                  2) Auteurs : Premier, second , N éme , dernier . 
+                                   <br>
+                                    3) Résumé (Abstract) :  Un paragraphe de synthèse de l'article , Presente la question etudièe et rappelleun resultat marquant .
+                                       <br>
+                                       4) introduction : Mise en contexte de l'etude , Rappel de l'état de l'art , Formulation des objectifs . 
+
+ <br>
+                                       5) Les Mots Cles se Forme suivant : choix1,choix2,xhoix3, ... 
+                                       Par exmple : UML,Api,...  . 
+
+                                           <br>
+                                          6) Matériel et Méthodes :  Instrumentation (modeles etc) , Protocole expérimental , Mthodologiestatistique .
+                                             <br>
+                                            7) Résultats : Présentation brute des analyses , sans interpretation Figures et Tables , Methodologie statistique .
+                                                  <br>
+                                                 8) Discussion : Interprétation critique des résultats, Confrontation aux résultats de la itterature .
+                                                      <br> 
+                                                       9) Conclusion : Resumé bref de la question , des avancées Perspectives .
+                                                         <br>
+                                                           10) Bibliographie .
+                         </p>
+                                                         <h1></h1>
+
+                      </header>
+
+</div>
+<br>
+
+
+              <div class="card card-register" style="width:1700px">
+                <div class="card-header">
+                  <img class="card-img" src="{% static 'G-Admin_cherch_eval/img/square1.png' %}" alt="Card image">
+                  <h4 class="card-title"> Artcile </h4>
+                </div>
+                <div class="card-body" style="width: 800px">
+                  <form class="form" method="post" enctype="multipart/form-data">
+                   
+                   
+
+
+
+
+
+ {% csrf_token %}
+
+                    <div class="input-group" >
+                      <div class="input-group-prepend"  style="padding-right:5px" >
+                        <div class="input-group-text" style="width:60px">
+                          <i class="tim-icons icon-badge"></i>
+                        </div>
+                      </div>
+
+                      {{formset.name}}
+
+                    </div>
+
+                    <div class="">
+                      <h5> Resumee:</h5>
+                      {{formset.description | safe}}
+                      <br>
+                      <h5> Les Mots cleé :</h5>
+                       {{formset.Mots_Cleé}}
+                       <br>
+                      {{formset.media}}
+                    </div>
+
+<br>
+<h4><b>............................................... Chois des anciens author .............................................................</b></h4>
+ 
+      {{formset.author_list | safe}}
+
+<br>
+<h4><b>...............................................................ADD New  authors...............................................................</b></h4>
+
+
+
+<button type ="button" onclick="addRow('dataTable2') ;" >add</button>
+<table id="dataTable2">
+    <tbody>
+
+
+    </tbody>
+</table>
+     
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+  function DEL(o) {
+        var p=o.parentNode.parentNode;
+         p.parentNode.removeChild(p);
+         
+         
+     var amount  = document.getElementById("amount").value ;
+     amount = parseInt(amount, 10) ;
+     amount = amount - 1 ;
+     document.getElementById("amount").value = amount ;
+   }
+     
+    function addRow(tableID) {
+
+ 
+     var amount  = document.getElementById("amount").value ;
+     amount = parseInt(amount, 10) ;
+     amount = amount + 1 ;
+     document.getElementById("amount").value = amount ;
+     
+     
+     var table = document.getElementById(tableID);
+     var rowCount = table.rows.length;
+     var row = table.insertRow(rowCount);
+     var colCount = table.rows[0].cells.length;
+     
+     var cell1 = row.insertCell(0);
+     cell1.id = rowCount +'0' ;
+     cell1.style.width = '120' ;
+     cell1.innerHTML = '<input placeholder="first Name"  type="text" name=\"'+ rowCount +'0' +'\" size="10"  id="first" required >';
+     
+     var cell2 = row.insertCell(1);
+     cell2.style.width = '120' ;
+     cell2.innerHTML = '<input placeholder="family Name" type="text" name=\"' +rowCount +'1' +'\" size="10"  id="family" required >';
+     
+     
+     
+     var cell3 = row.insertCell(2);
+     cell3.style.width = '120' ;
+     cell3.innerHTML = '<input placeholder="ID number" Name" type="text" name=\"' +rowCount +'2' +'\" size="10" id="IDnumber"  required >';
+     
+     
+     
+     
+     var cell4 = row.insertCell(3);
+     cell4.style.width = '220' ;
+     cell4.innerHTML = '<input placeholder="email" type="email" name=\"' +rowCount +'3'+ '\" size="20"  id="email" required >';
+     
+     var cell5 = row.insertCell(4);
+     cell5.style.width = '180' ;
+     cell5.innerHTML =  '<input placeholder="number" type="number" name=\"'+ rowCount +'4' +'\" size="9"  id="number" required >';
+     
+     
+     var cell6 = row.insertCell(5);
+     cell6.style.width = '120' ;
+     cell6.innerHTML = '<input placeholder="country" Name" type="text" name=\"' +rowCount +'5' +'\" size="10" id="country" required >';
+     
+     var cell7 = row.insertCell(6);
+     cell7.style.width = '120' ;
+     cell7.innerHTML = '<input placeholder="city" Name" type="text" name=\"' +rowCount +'6' +'\" size="10" id="city"  required >';
+
+     var cell8 = row.insertCell(7);
+     cell8.style.width = '120' ;
+     cell8.innerHTML = '<input placeholder="postal_code" Name" type="text" name=\"' +rowCount +'7' +'\" size="10" id="postal_code"  required >';
+
+
+     var cell9 = row.insertCell(8);
+     cell9.style.width = '120' ;
+     cell9.innerHTML = '<input placeholder="organization" Name" type="text" name=\"' +rowCount +'8' +'\" size="10" id="organization"  required >';
+     
+     
+     
+     
+     
+     var deleterow = row.insertCell(9);
+     deleterow.style.width= '30' ;
+     deleterow.cssText= ' text-align:center';
+     deleterow.innerHTML = '<button onclick = "DEL(this)>Delete;return false">x</button>' ;
+     
+
+} 
+</script>
+
+
+
+
+
+
+
+<table id="dataTable3">
+    <tbody> 
+
+      <input type="number" id="amount" name="amount" value="0" readonly><br><br>
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  
+                  <p>Document principales pour cette Article: <span></span></p>
+               <input class="btn " type="file" name="document">
+
+                  <button type="submit">Upload</button>
+
+                    <div class="form-check text-left">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox">
+                        <span class="form-check-sign"></span>
+                        I agree to the
+                        <a href="javascript:void(0)">terms and conditions</a>.
+                      </label>
+                    </div>
+
+                    <input class="btn btn-warning" type="submit" name="Submit">
+                  </form>
+
+               
+           </div>
+         </div>
+       </div>
+     </div>
+
+          </div>
+          <div class="register-bg"></div>
+           
+          
+          
+        
+  
+{% endblock %}

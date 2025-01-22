@@ -1,0 +1,303 @@
+
+{% extends 'account/mybase.html' %}
+
+{% load static %}
+
+
+{% block body_block %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--hadi hna ida brina nkhdmo binternet explorer-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--//hadi ida brina ykon site ykhdme bein fi tlf-->
+  <title>
+   login
+  </title>
+
+  <link rel="stylesheet" href="{% static 'css/css/bootstrap.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/css/font-awesome.min.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/css/style.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/css/styleligin.css'%}" />
+  
+  <!--[if lt IE 9]hadi ida kan 3ndna bzaf les serveures ki ydkhle
+     wa7de llsite yro7 ujibhlhe mn a9rbe serveur llblade ta3o-->
+     <link rel="stylesheet" href="{% static 'css/css/animate.css'%}" />
+  <script src="{% static 'css/js/html5shiv.min.js' %}"></script>
+  <!--bah IE y9dre ychof header w nav w ....-->
+  <script src="{%static 'css/js/respond.min.js'%}"></script>
+
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% load crispy_forms_tags %}
+
+
+
+<body>
+{% csrf_token %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- hada bouton ali ybane ki nbda fi tlf wfthli navbar ta3i so n3toli id ta3 haja ali lazme yft7ha par ex hna rana madilo
+            "bs-example-navbar-collapse-1" whwa nfsse id ali jaye fi class ali mn t7te ta3 nav en plus n9dro n3tolo ayy 7aja whwa y7lha -->
+        <a class="navbar-brand" href="#"><img src="{%static 'img/logo-ConvertImage.png'%}"></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav  navbar-right">
+         
+
+          
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--end  of navbar-->
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="img">
+          <img src="{% static 'img/makani.jpg'%}">
+
+
+        </div>
+      </div>
+    <div class="col-lg-6">
+  <div class="login-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {% if form.non_field_errors %}
+
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {% for error in form.non_field_errors %}
+                <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+              {% endfor %}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+              {% endif %}
+      <form class="form-signin" role="form"  action="{% url 'login' %}"  method="POST">
+                <img src="{% static 'img/undraw_profile_pic_ic5t (1).svg' %}">
+
+{% csrf_token %}
+
+        <h2 class="form-signin-heading" >Connexion </h2>
+
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+
+          <label for="username"> </label>
+          <input class="form-control" type="text" placeholder="Username" name="username" required autofocus>
+        </div>
+
+        <div class="input-container">
+            <i class="fa fa-pssw icon2"></i>
+            <label for="password">  </label>
+            <input class="form-control" type="password" placeholder="Password" name="password" required autofocus>
+          </div>
+
+
+        <br>
+        <button class="form-signin" type="submit" value="login">login</button>
+           <button type="reset" class="form-signin t ">Reset</button>
+
+        <br><br><br>
+
+        <p><a id="forgotPassword" class=" btn btn-secondary t "
+          href="{% url 'password_reset' %}">Forgot your password or your username ?</a></p>
+        <br>
+
+
+         <a href="{% url 'chercheur_signup' %}">Chercheur account</a>
+
+
+                <!----
+        <img src="css1/login/undraw_profile_pic_ic5t (1).svg">
+        <h2 class="title">Welcome</h2>
+              <div class="input-div one">
+                 <div class="i">
+                    <i class="fa fa-user"></i>
+                 </div>
+                 <div class="div">
+                    <h5>Username</h5>
+                    <input class="form-control" type="text" placeholder="Username" name="username" required autofocus>
+                 </div>
+              </div>
+              <div class="input-div pass">
+                 <div class="i"> 
+                    <i class="fa fa-lock"></i>
+                 </div>
+                 <div class="div">
+                    <h5>Password</h5>
+                    <input  class="form-control"type="password" placeholder="Password" name="password" required autofocus>
+                 </div>
+              </div>
+              <a href="{% url 'password_reset' %}">Forgot Password?</a>
+              <a href="{% url 'chercheur_signup' %}">SINGUP</a>
+              <input type="submit" class="btn "  value="Login">--->
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'css1/js/jquery-3.4.1.min.js'%}"></script>
+  <script src="% static 'css1/js/bootstrap.min.js'%}"></script>
+  <script src="{ sattic 'css1/js/main.js'%}"></script>
+</body>
+
+
+{% endblock %}

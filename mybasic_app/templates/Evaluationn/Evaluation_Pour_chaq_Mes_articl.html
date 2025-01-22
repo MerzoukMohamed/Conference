@@ -1,0 +1,91 @@
+{% extends 'Templevaluteur/Dachboardeval.html' %}
+
+{% block content %}
+
+                       {% include 'MSG/messages.html' %}
+
+
+      <div class="content">
+      <div class="row">
+        <div class="col-md-11">
+          <div class="card">
+              <div class="row">
+     <div class="col-md-12">
+
+
+              
+              <a href="{% url 'evaluteur:Mes_article_Final_detailles' %}"  style="margin-left:26%;margin-top:2%" class="btn btn-warning"> Number of Articles For Corrections is  : {{ evalu.artcl_a_corrige.count }} Articles  </a>
+                         <br>
+                         <br>
+
+
+ 
+            <br>
+
+
+              <a href="{% url 'evaluteur:Mes_article_Final_detailles' %}" style="margin-left:27%" class="btn btn-warning"> You have already participated in   : {{ etat_artciles.count }} Articles </a>
+                         <br>
+                         <br>
+
+
+  <br>
+  <br>
+
+{% for art in evalu.artcl_a_corrige.all %}
+
+    <br>
+  <h2 style="margin-left:2%"> for the Article : {{art}}  </h2>
+<hr><hr>
+  {% if not art in mylist_off_article_Deja_eval %}
+
+<h2 style="color:red;">  
+  Attention cette article Pas corrige !!!  
+            </h2>
+             <div class="col-sm-12 text-center">
+<a href="{% url 'evaluteur:evaluéé' pk=art.pk %}"
+ class="btn btn-info btn-round "> Corrige Now !</a>
+               </div>
+
+
+{% else %}
+
+
+{% for a in etat_artciles %}
+{% if a.article == art %}
+
+   <h4  style="color:blue;">  The article  "" {{ a.article }} ""  is corrected
+            </h4>
+            <p style="margin-left:2%">-This article is:  {{a.etat}}</p>
+              <br>
+            <p style="margin-left:2%">- This article is posted by :  {{ a.chrchr }}</p>
+          <br>
+              <p style="margin-left:2%">- comment of evaluation is  :  {{ a.Notation }} </p>
+          <br>  
+          <hr>
+<hr>
+
+
+   {% endif %}
+{% endfor %}
+
+  {% endif %}
+
+
+
+
+
+
+
+<br><br>
+{% endfor %}
+<br><br>
+ <div class="col-sm-12 text-right">
+               <a href="{% url 'evaluteur:dashboardeval' %}" class="btn btn-info btn-round btn-lg"> Back </a>
+               </div>
+               <br><br>
+</div>
+</div>
+              </div></div></div></div>
+
+
+{% endblock %}

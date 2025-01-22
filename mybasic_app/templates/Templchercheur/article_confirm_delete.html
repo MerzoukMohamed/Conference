@@ -1,0 +1,54 @@
+<!-- Delete Modal HTML -->
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="content">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <div class="card card-upgrade">
+              <div class="card-header text-center">
+                        <div id="deleteEmployeeModal" >
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+
+                              <form  method="POST">
+                                {% csrf_token %}
+                                <div class="modal-header">						
+                                  <h4 class="modal-title">Delete article :  {{ article.name}} </h4>
+
+                                </div>
+
+
+                                <div class="modal-body">					
+                                  <p>Are you sure you want to delete article :  {{ article.name}}
+                                   ?</p>
+                                  <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                </div>
+                               
+                                <div class="modal-footer">
+                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    <a href="{% url 'chercheur:Delate' article.id %}"> Submit &times;</a>
+                                  </button>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    <a href="{% url 'chercheur:list_delete_Article'%}"> cancel &times;</a>
+                                  </button>
+ <!-- annuler -->
+
+
+                                </div>
+                              </form>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+{% endblock %}

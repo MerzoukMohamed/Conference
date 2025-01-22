@@ -1,0 +1,50 @@
+class Conferance(models.Model):
+
+    title = models.CharField(max_length=200, null=True,unique=True)
+    # chairement = Admin 2 dans adminstaration et le rsponsable sur Conf
+    chairement = models.ForeignKey(User,on_delete=models.CASCADE)
+    email = models.EmailField(unique=True, null=True)
+    topic = models.ManyToManyField(Topic) ## M2M
+    Comite_de_programme = models.ForeignKey(Commite,null=True, on_delete=models.SET_NULL)
+    # Comite_de_Organizations = les user extren ++ qlq detille comme photo ... 
+    Comite_de_Organizations = models.OneToOneField(User, on_delete=models.CASCADE)
+    pay = models.PositiveIntegerField(null=True,default=0) 
+    stop = models.BooleanField(default=False) #pause ou non cette conf 
+    link = models.URLField(blank=True)
+    location = models.CharField(max_length=200, null=True)
+    country = models.CharField(max_length=200, null=True)
+    postal_code = models.PositiveIntegerField(null=True)
+    description = models.TextField(max_length=200, null=True)
+    ##############>>>>>>>>>>>>>>>>>>>>>>>>  les dates
+    ### date de conf hadi nennjmo ngolo tmetel Suivi de article mli nthete hata desicion final
+    date_Start_conf = models.DateTimeField(auto_now_add = True)
+    date_Fin_conf = models.DateTimeField(auto_now_add = False)
+    # ystaha9oha les evlltr 
+    date_Start_Notiication  = models.DateField(auto_now_add = False)
+    date_Fin_Notiication= models.DateField(auto_now_add = False)
+    date_Start_Eval_Artcl_First = models.DateField(auto_now_add = False)
+    date_Fin_Eval_Artcl_First  = models.DateField(auto_now_add = False)
+    # hadi lele charmain min ydire desecion final 
+    date_Start_Eval_Artcl_FinaaaL = models.DateField(auto_now_add = False)
+    date_Fin_Eval__Artcl_FinaaaL = models.DateField(auto_now_add = False)
+    # ystaha9oha chrchrr  
+    date_Start_poste_Artcl = models.DateField(auto_now_add = False)
+    date_Fin_poste_Artcl = models.DateField(auto_now_add = False)
+    updated = models.DateTimeField(auto_now=True)
+    
+         
+    class Meta:
+        ordering = ['-date_Start_conf','updated']
+
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('confEdit', kwargs={'pk':self.id})
+
+  # pour bien comppernde hadi conf rahi Stop w non pcq delete connfe mknch  
+    def Stop_Conf(self):
+        self.stop = True
+        self.save()
+

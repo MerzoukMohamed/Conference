@@ -1,0 +1,123 @@
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% block body_block %}
+
+  <div class="">
+    <div class="">
+
+      <div class="container align-items-center">
+
+
+
+                                        <div class="text-center">
+     <a href="{% url 'chercheur:tach_ARTCL' %}" class="btn btn-secondary">
+      You have  {{comments.count}} Comments</a>
+
+
+                                      </div>
+
+
+    {% for conferance in conferances %}
+                
+              {% if conferance.date_Fin_conf|date:"Y-m-d" >  Now|date:"Y-m-d"  %}
+
+              {% if conferance.stop == False %}
+
+        {% for art in articles %}
+  {% if conferance == art.Conferance %}
+ 
+       {% if conferance.date_Start_poste_Artcl|date:"Y-m-d" <= Now|date:"Y-m-d" %}
+             {% if Now|date:"Y-m-d" <=  conferance.date_Fin_poste_Artcl|date:"Y-m-d"  %}
+             
+
+        <div class="btn-wrapper pt-3">
+          <a href="{% url 'chercheur:Update' art.id %}">
+            <button href="{% url 'chercheur:Update' art.id %}" class="btn btn-simple btn-info">
+              <i class="tim-icons icon-paper"></i>
+
+          Article :{{art.name}} ----- Id :  {{art.id}}
+            
+            </button>
+          </a>
+
+<a class=" btn btn-info btn-comment"
+href="{% url 'chercheur:add_comment_to_Article' pk=art.pk %}">Add Comment</a>
+<br>
+
+
+{% for comment in comments_All %} 
+{% if comment in comments %}
+<hr><hr>
+  {% if request.user.is_authenticated or comment.approved_comments %}
+    {%if comment.article == art %} 
+<h3 style="color:blue;"> My Comment !! </h3>
+
+<h4> Create On :  {{ comment.created_date }}</h4>
+<h4> Text :   {{ comment.text|safe|linebreaksbr }}</h4>
+ <h4> By :    {{ comment.authorComment }} </h4>  
+
+
+ {% if not comment.approved_comments %}
+
+  <a class="btn btn-warning" href="{% url 'chercheur:comment_remove'  pk=comment.pk %}"
+   style="float:right;">
+    remove comment
+    <span class="glyphicon glyphicon-remove"></span>
+  </a>
+
+<br>
+
+   {% endif %}
+ {% endif %}
+{% endif %}
+
+
+{% else %}
+    {%if comment.article == art %} 
+<br>
+<h3 style="color:blue;"> Comment from Other !!! </h3>
+<h4> Create On :  {{ comment.created_date }}</h4>
+<h4> Text :   {{ comment.text|safe|linebreaksbr }}</h4>
+ <h4> By :    {{ comment.authorComment }} </h4>  
+
+
+ {% if not comment.approved_comments %}
+
+  <a class="btn btn-warning" href="{% url 'chercheur:comment_approve' pk=comment.pk %}"
+   style="float:right;">
+    Approve this comment (Good one) 
+    <span class="glyphicon glyphicon-ok"></span>
+  </a>
+<br><br>
+
+   {% endif %}
+<br>
+    <a class=" btn btn-warning btn-comment" 
+href="{% url 'chercheur:add_comment_to_Article' pk=art.pk %}"
+ style="float:right;">Repondre sur cette Comment </a>
+
+ {% endif %}
+  {% endif %}
+{% endfor %}
+
+
+<br>
+
+ {% endif %}
+ {% endif %} 
+  {% endif %}
+ {% endfor %}
+
+ {% endif %} 
+ {% endif %} 
+
+        {% endfor %}
+</div>
+</div>
+</div>
+
+ </div>
+
+
+
+{% endblock %}

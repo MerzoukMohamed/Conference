@@ -1,0 +1,148 @@
+{% extends 'accounts/main.html' %}
+
+{% block scripts %}
+
+
+
+{% endblock scripts %}
+
+{% block content %}
+<style>
+.myDiv {
+  
+  width: 45%; 
+  height: 25%; 
+  display: inline-block;
+  
+}
+</style>
+
+ <div class="content">
+        <div class="row">
+
+                <div class="col-md-12 ml-auto mr-auto">
+                  <div class="myDiv">
+            <div class="card card-chart ">
+            <div class="card card-upgrade">
+              <div class="card-header ">
+               <h5 class="card-title">Conferance : {{conf_name}}</h5>
+                  <p class="card-category">
+ <h5>Articles par Evaluateur</h5>
+                <h5>articles distribuée : {{totalart}}</h5>
+                <h5 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i>nb Evaluateurs : {{totaleval}}</h5>
+</p>
+
+              </div>
+              <div class="card-body text-center">
+
+      
+        
+
+
+                  <canvas id="bar-chart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+</div>
+              
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                
+
+
+                <script>
+
+
+                var ctx = document.getElementById('bar-chart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'bar',
+
+                    // The data for our dataset
+                    data: {
+                        labels: {{ labels2|safe }},
+                        datasets: [{
+                            label: 'eval',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: {{ data2|safe }},
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {
+                      responsive: true
+                      /*scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                      }*/
+                    }
+                });
+
+
+                  /*   
+                  var config2 = {
+                    type: 'bar',
+                    data: {
+                      datasets: [{
+                        data: {{ data2|safe }},
+                        backgroundColor: [
+                          '#196F3D','#CB4335', '#3498DB'
+                        ],
+                        label: 'evaluateurs'
+                      }],
+                      labels: {{ labels2|safe }}
+                    },
+                    options: {
+                      responsive: true
+                    }
+                  };
+
+                  window.onload = function() {
+                    
+                    var ctx2 = document.getElementById('bar-chart').getContext('2d');
+                    window.myBar = new Chart(ctx2, config2);
+                  };*/
+
+                </script>
+
+   
+     
+                  
+
+  <div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-cog fa-2x"> </i>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="header-title"> Sidebar Background</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger background-color">
+            <div class="badge-colors text-center">
+              <span class="badge filter badge-info " data-color="primary"></span>
+              <span class="badge filter badge-primary active" data-color="blue"></span>
+              <span class="badge filter badge-success" data-color="green"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="adjustments-line text-center color-change">
+          <span class="color-label">LIGHT MODE</span>
+          <span class="badge light-badge mr-2"></span>
+          <span class="badge dark-badge ml-2"></span>
+          <span class="color-label">DARK MODE</span>
+        </li>
+       
+        
+      </ul>
+    </div>
+  </div>
+
+  {% endblock %}

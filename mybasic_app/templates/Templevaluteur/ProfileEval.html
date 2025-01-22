@@ -1,0 +1,340 @@
+{% extends 'Templevaluteur/Dachboardeval.html' %}
+{% block content %}
+
+
+<div class="content">
+      <div class="row">
+        <div class="col-md-11">
+          <div class="card">
+
+  <div class="row">
+     <div class="col-md-12">
+
+
+
+          <div class=" col-md-8 ml-auto mr-auto">
+            <div class="card card-coin card-plain">
+              <div class="card-header" style="margin-left:18%">
+
+
+              <a href="{{ user.profile_pict.url }}" style="margin-left:3%">
+                     <img style="width:10%" class=" rounded-circle"
+
+                     src="{{ user.profile_pict.url }}" >
+                      <h5 class="title"></h5>
+                    </a>
+
+
+                <h3 class="title"> Full Name: {{ user.first_name }} {{ user.last_name }}</h3>
+
+              </div>
+
+              <div class="card-body">
+
+                <ul style="margin-right:45%" class="nav nav-tabs nav-tabs-primary justify-content-center">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#linka">
+                      << 01 >>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#linkb">
+                      << 02 >>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#linkc">
+                      << 03 >>
+                    </a>
+                  </li>
+                  
+                    <li class="nav-item">
+                    <a class="nav-link " data-toggle="tab" href="#linkd">
+                      << 04 >>
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content tab-subcategories">
+                  <div class="tab-pane active" id="linka">
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label">Username :  </label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                        <h4 class="text-white"> {{ user.username }}
+                        </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label">Email:</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                         <h4 class="text-white">                   
+                            {{ user.email }}
+                           </h4>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="row">
+                      <label class="col-sm-3 col-form-label">First Name:</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                         <h4 class="text-white">                   
+                            {{ user.first_name }}
+                           </h4>
+
+                        </div>
+                      </div>
+                    </div>
+                                    <div class="row">
+                      <label class="col-sm-3 col-form-label">Last Name:</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                         <h4 class="text-white">                   
+                            {{ user.last_name }}
+                           </h4>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="tab-pane" id="linkb">
+                               <div class="row">
+                      <label class="col-sm-3 col-form-label">Organization :  </label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                        <h4 class="text-white"> {{ user.Organization }}
+                        </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label">Phone:</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                         <h4 class="text-white">                   
+                            {{ user.Phone }}
+                           </h4>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+
+             <div class="row">
+                      <label class="col-sm-3 col-form-label">Adersse 01(Principale):</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                         <h4 class="text-white">                   
+                            {{ user.Address_line_principale }}
+                           </h4>
+
+                        </div>
+                      </div>
+                    </div>
+
+             <div class="row">
+                      <label class="col-sm-3 col-form-label">Adersse02:</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                         <h4 class="text-white">                   
+                            {{ user.Address_line }}
+                           </h4>
+
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="tab-pane" id="linkc">
+                    <div class="row">
+                      <label class="col-sm-3 col-form-label">Country</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                  
+                        <h4 class="text-white">                   
+                           {{ user.Country }}
+                           </h4>
+                        </div>
+                      </div>
+                    </div>
+                                
+                      <div class="row">
+                      <label class="col-sm-3 col-form-label">City</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                <h4 class="text-white">                   
+                        {{ user.City }}
+                      </h4>
+
+                        </div>
+                      </div>
+                    </div>
+                                <div class="row">
+                      <label class="col-sm-3 col-form-label">Country</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                   <h4 class="text-white">
+                          {{ user.Country }}
+
+                                </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                
+
+          <div class="row">
+                      <label class="col-sm-3 col-form-label">Poste code</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                          <h4 class="text-white">                   
+                 {{ user.Post_code }}
+                    </h4>
+                        </div>
+                      </div>
+                    </div></div>
+
+
+                  <div class="tab-pane" id="linkd">
+
+               <div class="row">
+                      <label class="col-sm-3 col-form-label">ID :</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+               <h4 class="text-white">                   
+                       5q1xg4!6ml!u{{ user.pk }}k7g2 
+                     </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                                
+                      <div class="row">
+                      <label class="col-sm-3 col-form-label">Site</label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+                            <a    href={{ user.site_Personnel }}> {{ user.site_Personnel }}</a>
+
+                        </div>
+                      </div>
+                    </div>
+                        
+                  <div class="row">
+                      <label class="col-sm-3 col-form-label">See more detail or change  ,update ... </label>
+                      <div class="col-sm-9">
+                        <div class="form-group">
+          <h4 class="text-white">                  
+                          <a href="{% url 'evaluteur:EditeProfileAs_eval' pk=user.pk %}">
+                           More ! </a>
+                         </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+         <button style="margin-left:40%" class="btn btn-sucsses"><a href="{% url 'evaluteur:EditeProfileAs_eval' pk=user.pk %}">
+                           edit profil</a></button>
+         <br><br><br>
+
+</div>
+      </div>
+    </div>
+
+
+
+
+<br><br><br>
+</div>
+</div>
+</div>
+
+
+
+        <div class="col-md-12">
+          <div class="card">
+     <div class="col-md-11">
+         <div class="info info-horizontal">
+
+            <div class="icon icon-primary">
+
+              <i class="tim-icons icon-square-pin">Find us at the office</i>
+
+
+            </div>
+            <div  class="description" style="margin-left:10%">
+
+
+              <p> Makani@gemail.com
+                <br> ESI SBA ,
+                <br> Algeria
+              </p>
+            </div>
+
+          </div>
+          <div class="info info-horizontal">
+            <div class="icon icon-primary">
+                <i class="tim-icons icon-mobile">Give us a rin</i>
+            </div>
+            <div class="description" style="margin-left:10%">
+              <p>
+                 +47 77 77 777 777 77
+                 Mon - Mai, 2020 - 06 -10
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+
+<br><br><br>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

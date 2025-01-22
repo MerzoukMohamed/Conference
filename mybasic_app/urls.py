@@ -1,0 +1,140 @@
+from django.urls import path,include
+from .views import chercheur,evaluteur,views
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+urlpatterns = [
+    
+     path('login/',views.LoginByProfile, name="LoginByProfile"),
+ 
+    
+
+
+###################""
+
+
+  path('myapp/chercheur/', include(([
+  	  path('', chercheur.profil_chrch, name='dashboardchrch'),
+      path('myprofile_AsChercheur',chercheur.Userchrch,name='Profile'),
+      #path('CréaArticle',chercheur.CreeArticle,name='CreeArticle'),
+      path('CréaArticle/<str:pk>/',chercheur.CrArticle,name='CrArticle'),
+      path('DeleteARTCL',chercheur.Delete_list,name='list_delete_Article'),
+      path('UpdateARTCL',chercheur.Update_detaille_list,name='tach_ARTCL'),
+      path('Documentation_chrh/',chercheur.AccedeauDoc_Aschrch,name='AccedeauDoc_Aschrch'),
+      path('EditeProfile/<str:pk>/',chercheur.Edit_Myprofil.as_view(),name='EditeProfile'),
+              # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   10/05/2020     ++++++++++++++++++++++++++++++++++
+  
+      path('DeleteARTCL/<str:pk>/',chercheur.Delete,name='Delate'),
+      path('UpdateArTCL/<str:pk>/',chercheur.Update,name='Update'),
+              # +++++++++++++++++++++++++++++++++++++++++++++   15/05/2020     ++++++++++++++++++++++++++++++++++
+      path('Detail_crea_Artcl/<str:pk>/',chercheur.confList,name='Detail_crea_Artcl'),
+      path('topic_list/',chercheur.topicList.as_view(),name='topic_list'),
+
+
+      path('article/<pk>/comment',chercheur.add_comment_to_Article,name="add_comment_to_Article"),
+      path('comment/<pk>/approve',chercheur.comment_approve,name="comment_approve"),
+      path('comment/<pk>/remove',chercheur.comment_remove,name="comment_remove"),
+      #just add /<pk>\d+  bach  ji mhachyaa les url 
+      path('Etat_Mes_Articles/',chercheur.Etat_Mes_Articles , name='Etat_Mes_Articles'),
+      path('Voir_All_m_Artcl/',chercheur.Voir_All_m_Artcl , name='Voir_All_m_Artcl'),
+
+
+
+
+
+
+
+
+
+
+
+      path('<pk>/deleteart/', chercheur.artDeleteView, name="deleteart"),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     ], 'views'), namespace='chercheur')),
+
+
+
+
+
+    path('myapp/evaluteur/', include(([
+
+       path('', evaluteur.profil_eval , name='dashboardeval'), # hadi engenrale
+       path('myprofileAsEvaluateur/',evaluteur.Usereval,name='Profile'),  # hadi sepecile lel user
+       path('Articles/',evaluteur.Liste_All_Artcl.as_view(), name='listeArtcile'),
+       path('Confrences/',evaluteur.Liste_All_Confrence.as_view() , name='All_Confernce'),
+       
+       
+       ########################################         23 / 06 /2020  ##
+       path('Article/<pk>/Evalution/',evaluteur.evaluéé , name='evaluéé'),
+       path('MesEvaluation/',evaluteur.List_MesEvaluation , name='MesEvaluation'),
+
+
+
+
+
+
+       path('EditeProfile/<str:pk>/',evaluteur.Edit_Myprofil_As_Eval.as_view(),name='EditeProfileAs_eval'),
+       path('etat_chrch/',evaluteur.All_Etat_Du_Cherchr.as_view() , name='Etat_All_Chrch'),
+       
+  #/////////////////////////////////
+       path('Allcommite/',evaluteur.All_Commite.as_view() , name='AllCommite'),
+       path('Information',evaluteur.Info_T,name='Information'),
+       path('Notification',evaluteur.Just_Notification,name='Just_Notification'),
+       
+
+
+
+   ############################################### choix
+       path('Votrecommite/',evaluteur.Mon_Commite , name='MonCommite'), 
+       path('Specefic/<str:pk>/',evaluteur.Specefic,name='specefic'),  
+       path('Finality/',evaluteur.final , name='Mes_article_Final'),
+       path('detailles/',evaluteur.final_detailles , name='Mes_article_Final_detailles'),
+
+
+      path('article/<pk>/comment',evaluteur.add_comment_to_Article,name="add_comment_eval_to_Article"),
+      path('comment/<pk>/approve',evaluteur.comment_approve,name="comment_evl_approve"),
+      path('comment/<pk>/remove',evaluteur.comment_remove,name="comment_evl_remove"),
+      path('Mescomment/',evaluteur.Mes_Comment,name="Mes_evl_Comment"),
+
+ 
+                                      ], 'views'), namespace='evaluteur')),
+
+
+
+
+
+
+###############" hado swalhe persssonel t3 kol user bch ytfkre wla ki agendaa "
+
+    path('create/',views.createNote, name="create"),
+    path('mynote/',views.mynote, name="mynote"),
+    path('merci/',views.Merci, name="merci"),
+
+
+        ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

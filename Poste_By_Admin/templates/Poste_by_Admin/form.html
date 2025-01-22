@@ -1,0 +1,45 @@
+{% extends 'accounts/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if title %}
+    <h1>{{ title }}</h1>
+{% endif %}
+
+      <div class="content">
+        <div class="row">
+          <div class=" col-lg-12 col-md-12">
+            <div class="card  ">
+              <div class="card-header text-center">
+
+              </div>
+              <div class="card-body-center">
+                <form method="post">
+                    <div class="col-sm-6">
+
+
+                     <h4 class="card-title ">Pstes </h4>
+                        <p class="card-category ">
+   To post you have to apply the rules of MAKANI-CF-</p>
+  <br> <br> <br>
+<form method='POST' action='.' enctype='multipart/form-data'>
+
+	{% csrf_token %}
+
+    {{ form|crispy }}
+
+
+    <button class="btn btn-success btn-lg" type='submit'> Poste </button>
+</form>
+</div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="wrapper">
+    <div class="page">
+      <img src="{% static 'G-Admin_cherch_eval/img/dots.png' %}" class="dots" style="position: fixed;
+    opacity: 1; background-repeat : repeat ;z-index:2;">
+      <img src="{% static 'G-Admin_cherch_eval/img/path1.png' %}" class="path" >
+
+<div class="content" style="margin-left:20%">
+        <div class="row">
+          <div class=" col-lg-12 col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade text-center" style="padding: 15px;
+  background-color:#1b397b;">
+              <div class="card-header text-center" style="padding: 15px;
+  background-color:#1b397b;">
+                <h4 class="card-title" style="padding: 15px;
+  background-color:#1b397b;">List of Topics </h4>
+                  <p class="card-category text-center">
+This list represents the Conferences's Topics offered by Our company</p>
+              </div>
+
+                <div class="col-sm-6">
+                <a href="#" class="btn btn-info">Theme Count : {{ number }}</a>
+                </div>
+
+                <div>
+                  <table class="table">
+
+
+                    
+{% for c in cf %}
+
+
+{% for tp in c.topic.all %}
+{% for topic in topic_list %}
+ 
+ {% if tp == topic %}
+
+
+                    <thead>
+                      <th class="text-center" >Confreance </th>
+                      <th>Theme Title</th>
+                      <th class="text-center" >Details</th>
+                    </thead>
+
+
+                    <tbody>  
+
+                      <tr>
+                  <td class="text-center">{{c.title}}</td>
+                        <td>{{topic.title}}</td>
+                        <!-- poster article-->
+                        <td class="text-center">
+                         <a class="btn btn_info"  href="{% url 'chercheur:Detail_crea_Artcl' topic.id %}">View
+                        </td>
+                      </tr>
+     
+                      <tr>
+                        <td class="text-center"></td>
+                        <td class="text-center">
+                          
+                        </td>
+                        <td class="text-center">
+                        </td>
+                      </tr>
+                    </tbody>
+
+{% endif %}
+{% endfor %}
+{% endfor %}
+ 
+
+
+                        
+                   {% endfor %} 
+
+     
+
+</table>
+
+
+ <ul class="pagination">
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+{% if page_obj.number|add:'-4' > 1 %}
+    <li><a href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+{% endif %}
+
+{% for i in page_obj.paginator.page_range %}
+    {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only"> (current) </span></span></li>
+    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+        <li><a href="?page={{ i }}">_{{ i }}_</a></li>
+    {% endif %}
+{% endfor %}
+
+{% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+    <li><a href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+{% endif %}
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+<!-- end Pagination -->                     
+
+
+                 </div>
+
+            </div>
+          </div>
+        </div>
+        </div>
+</div>
+      </div>
+    </div>
+</div>
+</div>            
+      
+
+{% endblock %}

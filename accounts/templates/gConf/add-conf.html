@@ -1,0 +1,184 @@
+{% extends 'accounts/main.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Create Conference</h5>
+              </div>
+              <div class="col-sm-6">
+                                  
+                        <a href="{% url 'comiteCreate' %}" class="btn btn-success"><i class="material-icons"></i> <span>Create  Comitee  !</span></a>
+                          <a href="{% url 'TopicCreateView' %}" class="btn btn-success"><i class="material-icons">
+
+  </i> <span>Add Topic </span></a>
+                </div>
+              <div class="card-body">
+                <form method="post">
+                     
+                  {% csrf_token %}
+  <div class="col-sm-8">
+    <h5 >
+You can choose a subject if it already exists,through the following list!   </h5>
+                 {{ form.topic }}  
+ 
+
+
+
+</div>
+<br>
+  
+               
+                 {{ form.title|as_crispy_field }}  
+
+   
+
+                 {{ form.email|as_crispy_field}} 
+
+                 <br>
+
+
+                 {{ form.Comite_de_programme|as_crispy_field}} 
+
+
+   
+
+
+            {{ form.Comite_de_Organizations|as_crispy_field }}  
+                                        
+
+                 {{ form.pay|as_crispy_field }} 
+
+    
+            {{ form.link|as_crispy_field }}  
+
+
+              {{ form.location|as_crispy_field }}  
+
+ 
+           {{ form.country|as_crispy_field }} 
+
+
+            {{ form.postal_code|as_crispy_field }}  
+
+
+               <br><br>
+      
+       <label>date_Start_conf : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Start_conf }}  >
+
+          <label>date_Fin_conf : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Fin_conf }}  >
+
+<br>
+<br>
+
+
+                           <label>date_Start_Notification : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Start_Notification }}  >
+
+                           <label>date_Fin_Notification : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Fin_Notification }}  >
+              <br>
+<br>
+                 
+                           <label>date_Start_Eval_Artcl_First : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Start_Eval_Artcl_First }}  >
+                           <label>date_Fin_Eval_Artcl_First : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Fin_Eval_Artcl_First }}  >
+                 <br>
+<br>
+
+                           <label>date_Start_Eval_Artcl_FinaaaL : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Start_Eval_Artcl_FinaaaL }}  >
+                           <label>date_Fin_Eval_Artcl_FinaaaL : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Fin_Eval_Artcl_FinaaaL }}  >
+
+                 <br>
+<br>
+
+                 
+                           <label>date_Start_poste_Artcl : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Start_poste_Artcl }}  >
+                           <label>date_Fin_poste_Artcl : </label>
+       <input type="date" class="text-center" 
+                 {{ form.date_Fin_poste_Artcl }}  >
+
+
+
+        <label>description : </label>
+       
+                 {{ form.description|as_crispy_field  }} 
+
+
+                  
+              <div class="card-footer">
+
+                     <br>
+            <h5> if you want to cancel the conference press stop to cancel it </h5>
+              <label>Stop  </label>
+       <input  
+                 {{ form.stop }}  >
+
+            <br>
+
+                <a class="btn btn-warning" href="{% url 'ges_conf' %}">Cancel</a>
+                <button type="submit" class="btn btn-fill btn-primary">Create</button>
+              </div>
+
+
+
+            </div>
+          </div>
+         
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-cog fa-2x"> </i>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="header-title"> Sidebar Background</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger background-color">
+            <div class="badge-colors text-center">
+              <span class="badge filter badge-primary active" data-color="primary"></span>
+              <span class="badge filter badge-info" data-color="blue"></span>
+              <span class="badge filter badge-success" data-color="green"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="adjustments-line text-center color-change">
+          <span class="color-label">LIGHT MODE</span>
+          <span class="badge light-badge mr-2"></span>
+          <span class="badge dark-badge ml-2"></span>
+          <span class="color-label">DARK MODE</span>
+        </li>
+
+          
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

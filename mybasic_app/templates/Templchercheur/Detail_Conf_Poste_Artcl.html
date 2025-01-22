@@ -1,0 +1,180 @@
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body_block %}
+<div class="wrapper">
+    <div class="page">
+      <img src="{% static 'G-Admin_cherch_eval/img/dots.png' %}" class="dots" style="position: fixed;
+    opacity: 1; background-repeat : repeat ;z-index:2;">
+      <img src="{% static 'G-Admin_cherch_eval/img/path1.png' %}" class="path" >
+        <br><br><br><br>
+      <div class="content" style="margin-left:30%">
+        <div class="row">
+          <div class=" col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade text-center" style="padding: 15px;
+                                                                            background-color:#1b397b;">
+              <div class="card-header text-center" style="">
+                <h4 class="card-title" style="padding: 15px;
+  background-color:#1b397b;">List of Conferances </h4>
+                  <p class="card-category text-center">
+              <div>
+
+                  <p class="card-category">This liste represent the Conferances proposed for the theme {{topic.title}}</p>
+              </div>
+            </div>
+              <div class="card-body">
+
+             <div class="content">
+               <div class="row">
+                   <div class="col-md-8 ml-auto mr-auto">
+
+                <a class="btn btn-secendery" href="{% url 'chercheur:CrArticle' topic.id %}" >
+                   Poster article
+                </a>
+                  </div>
+
+                  </div>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                <div class="container">
+
+         <label>title : </label>
+
+                 {{ conferance.title}}  
+
+<br>
+     <label>email : </label>
+                 {{ conferance.email}} 
+
+                 <br>
+
+    <br>                                    
+  <label>pay : </label>
+                 {{ conferance.pay }} 
+<br>
+
+      <label>link : </label>
+            {{ conferance.link }}  
+<br>
+  <label>location : </label>
+              {{ conferance.location }}  
+<br>
+   <label>country : </label>
+           {{ conferance.country }} 
+
+<br>
+   <label>postal_code : </label>
+            {{ conferance.postal_code }}
+
+               <br><br>
+
+             <label>date_Start_conf : </label>
+  
+                 {{ conferance.date_Start_conf }}  
+
+
+                           <label>date_Fin_conf : </label>
+    
+                 {{ conferance.date_Fin_conf }}  
+                 <br>
+
+
+          
+                 
+           <label>date_Start_Eval_Artcl_First : </label>
+    
+                 {{ conferance.date_Start_Eval_Artcl_First }}  
+
+                           <label>date_Fin_Eval_Artcl_First : </label>
+       
+                 {{ conferance.date_Fin_Eval_Artcl_First }}  
+                 <br>
+<br>
+
+                           <label>date_Start_Eval_Artcl_FinaaaL : </label>
+    
+                 {{ conferance.date_Start_Eval_Artcl_FinaaaL }}  
+
+                           <label>date_Fin_Eval_Artcl_FinaaaL : </label>
+  
+                 {{ conferance.date_Fin_Eval_Artcl_FinaaaL }}  
+
+                 <br>
+<br>
+
+                 
+             <label>date_Start_poste_Artcl : </label>
+
+        {{ conferance.date_Start_poste_Artcl }}  
+
+         <label>date_Fin_poste_Artcl : </label>
+       
+                 {{ conferance.date_Fin_poste_Artcl }}  
+
+
+                <br><br><br>
+
+        <label>description : </label>
+       
+          {{ conferance.description  }} 
+
+
+            </form>
+              </div>
+
+
+
+</div>
+
+
+
+                <div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+ <ul class="pagination">
+
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+{% if page_obj.number|add:'-4' > 1 %}
+    <li><a href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+{% endif %}
+
+{% for i in page_obj.paginator.page_range %}
+    {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only"> (current) </span></span></li>
+    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+        <li><a href="?page={{ i }}">_{{ i }}_</a></li>
+    {% endif %}
+{% endfor %}
+
+{% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+    <li><a href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+{% endif %}
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+
+<!-- end Pagination -->                     
+                      
+                      
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+	<title> Create note </title>
+</head>
+<body>
+<br>
+  <div class="wrapper">
+    <div class="page">
+      <img src="{% static 'G-Admin_cherch_eval/img/dots.png' %}"
+       class="dots" style="position: fixed;
+    opacity: 1; background-repeat : repeat ;z-index:2;" >
+      <img src="{% static 'G-Admin_cherch_eval/img/path1.png' %}"
+             class="path">
+<br>
+         <div class="content" style="margin-left:20%">
+        <div class="row">
+          <div class=" col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade " style="padding: 15px;
+  background-color:#1b397b;">
+              <div class="card-header text-center" style="padding: 15px;
+  background-color:#1b397b;">
+                <h4 class="card-title" style="padding: 15px;
+  background-color:#1b397b;"> Create My note</h4>
+                  <p class="card-category text-center">
+
+Here you can create notes for you don't forget them</p>
+              </div>
+
+              <div class="card-body" style="padding: 15px;
+  background-color:#1b397b;">
+
+                <div class="col-sm-6">
+
+<div class="container">
+
+<form  method="POST" action="{% url "create" %}">
+
+{% csrf_token %}
+
+<div class="input-group mb-3 style="color:info" >
+
+
+	</div>
+{{ form.name|as_crispy_field}}
+
+</form>
+
+				</div>
+
+<a type="submit", class="btn btn-info" style="margin-left:5%" href="{% url 'LoginByProfile' %}" >
+         Back to Profile   </a>
+					<button type="submit" name="save" class="btn btn-secondary" style="margin-left:5%">
+			Create
+		</button>
+
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		 </div>
+	</div>
+  </div>
+</body>
+
+{% endblock %}

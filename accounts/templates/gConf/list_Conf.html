@@ -1,0 +1,285 @@
+{% extends 'accounts/main.html' %}
+
+
+{% block content %}
+
+
+
+<div class="content">
+        <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade">
+              <div class="card-header text-center">
+               <h4 class="card-title">list of conferences </h4>
+                  <p class="card-category">
+This list represents the Conferences offered by your company"Active"</p>
+         
+              </div>
+              <div class="card-body">
+                <div class="col-sm-12 ">
+                                  
+                         <a href="{% url 'confCreate' %}" class="btn btn-success"><i class="material-icons"></i> <span>Create</span></a>
+                                  <a href="#" class="btn btn-warning"> Count : {{ number }}  </a>
+
+                    
+                </div>
+      <div class="table-responsive table-upgrade">
+                  <table class="table">
+                    <thead>
+                      <th></th>
+                      <th class="text-center">Delete</th>
+                      <th class="text-center">
+     Modify And See Detailed </th>
+                      <th class="text-center">List of articles</th>
+                    </thead>
+
+                    <tbody>
+                     
+                       {% for conferance in conferance_list %}
+                
+                        {% if conferance.date_Fin_conf|date:"Y-m-d" >  Now|date:"Y-m-d"  %}
+
+
+                        {% if conferance.stop == False %} 
+
+                      <tr>
+                        <td>{{conferance.title}}</td>
+
+                        <!-- supprimer conf-->
+                        <td class="text-center">
+                         <a href="{% url 'StopConf' conferance.id %}">
+                                 <i class="tim-icons icon-trash-simple text-danger"></i></a></td>
+                        </td>
+                     
+                        <!-- modifier conf-->
+                        <td class="text-center">
+                         <a href="{% url 'modifier' conferance.id %}">
+                          <i class="tim-icons icon-pencil text-pencil"></i></a></td> 
+                       <!-- des articles-->
+                        <td class="text-center">
+                         <a href="{% url 'article_conf' conferance.id %}">
+                          View </a></td> 
+                          
+                        <!-- update distribution-->
+                        <td class="text-center">
+                         <a href="{% url 'Update' conferance.id %}">
+                         Distribute</a></td>
+
+                      </tr>
+                              {% endif %}
+                              {% endif %}
+                        {% endfor %}
+</tbody>
+</table>
+
+
+
+
+                        <ul class="pagination">
+
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+<!-- end Pagination -->                     
+
+</div>
+</div>
+</div>
+
+
+
+                <div class="col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade">
+              <div class="card-header text-center">
+    
+                <h4 class="card-title">List of conferences finish </h4>
+                  <p class="card-category">
+This list represents the Conferences offered by your company"Active"</p>
+
+              </div>
+              <div class="card-body">
+                <div class="col-sm-12 text-center">
+                                  
+                                     
+                </div>
+                <div class="table-responsive table-upgrade">
+                  <table class="table">
+                    <thead>
+                      <th></th>
+                      <th class="text-center">because of:</th>
+                      
+                    </thead>
+                    <tbody>
+                
+             {% for conferance in conferance_list %}
+                
+                        {% if conferance.date_Fin_conf|date:"Y-m-d" < Now|date:"Y-m-d"  %}
+
+
+                
+
+                      <tr>
+                        <td>
+                         
+ <h4 style="color:blue;" > today {{Now|date}} et la date fin de Conferance {{conferance.title}}  Le {{conferance.date_Fin_conf|date}}  , Donc   est fini   </h4>
+
+
+                      </td>
+                  </tr>
+                      
+                
+                              {% endif %}
+                        {% endfor %}
+</tbody>
+</table>
+
+                        <ul class="pagination">
+
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+<!-- end Pagination -->                     
+
+
+</div>
+</div>
+</div>
+</div>
+
+                <div class="col-md-12 ml-auto mr-auto">
+            <div class="card card-upgrade">
+              <div class="card-header text-center">
+    
+                <h4  class="card-title">List of Confrance canceled
+                 </h4>
+<p class="card-category">
+This list represents the Conferences offered by your company"Canceled"</p>
+              </div>
+              <div class="card-body">
+                <div class="col-sm-12 text-center">
+                                  
+                                     
+                </div>
+                <div class="table-responsive table-upgrade">
+                  <table class="table">
+                    <thead>
+                      <th></th>
+                      <th class="text-center">Becouse of :</th>
+                      
+                    </thead>
+                    <tbody>
+                       {% for conferance in conferance_list %}
+                
+
+                        {% if conferance.stop == True %}
+          
+                      <tr>
+                        <td>
+                    
+  <h3 style="color:red;"> Attention  : <br>
+                         - La Confrence : {{conferance.title}} est arete ou bien annuléé 
+                       <br>
+                       - il peut active cete conf a cause de e temps de derolment cette Conf , mzl mkmlch  
+                       <a href="{% url 'StopConf' conferance.id %}"> Contune cette Conf </a>
+                       </h3>
+
+                      </td>
+                  </tr>
+                      
+                              {% endif %}
+                        {% endfor %}
+</tbody>
+</table>
+
+
+
+
+                        <ul class="pagination">
+
+<!-- pagination-->
+
+{% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+{% endif %}
+
+
+
+{% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+{% endif %}
+
+</ul>
+<!-- end Pagination -->                     
+
+                   
+                      
+                      
+  <div class="fixed-plugin">
+    <div class="dropdown show-dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-cog fa-2x"> </i>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="header-title"> Sidebar Background</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger background-color">
+            <div class="badge-colors text-center">
+              <span class="badge filter badge-primary active" data-color="primary"></span>
+              <span class="badge filter badge-info" data-color="blue"></span>
+              <span class="badge filter badge-success" data-color="green"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="adjustments-line text-center color-change">
+          <span class="color-label">LIGHT MODE</span>
+          <span class="badge light-badge mr-2"></span>
+          <span class="badge dark-badge ml-2"></span>
+          <span class="color-label">DARK MODE</span>
+        </li>
+        
+        <br>
+          <br>
+        </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+{% endblock %}

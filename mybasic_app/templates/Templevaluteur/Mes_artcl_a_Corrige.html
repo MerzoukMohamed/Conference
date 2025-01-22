@@ -1,0 +1,160 @@
+{% extends 'Templevaluteur/Dachboardeval.html' %}
+{% block content %}
+
+
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12 col-sm-12  ">
+            <div class="x_panel">
+              <div class="x_title">
+                  <h1> Le evaluateur : {{ evalu.user }} </h1>
+                <div class="clearfix"></div>
+   <br><br>
+
+<div class="Container">
+          <h2> Les article qui vous avez choisi dans votre Comite </h2>
+          <br><br>
+          <hr>
+
+           {% if Choisi %}
+{% for c in Choisi %}
+{% for comit in comits %}
+    {% if comit == c.comit %}
+  
+<ul>
+<li>  
+ <h3 style="color:green;"> Pour Comite :  {{ c.comit }} </h3>  
+  
+        <br>
+
+   
+        <ul>
+    
+            <li> <h5> Article 01  : {{c.art1}} </h5> </li>
+            <li> <h5> Article 02  : {{c.art2}} </h5> </li>
+            <li> <h5> Article 03 : {{c.art3}} </h5> </li>
+
+               <br>
+
+          
+        </ul>
+
+{% else %}
+<h3 style="color:red;"> Pour Comite :  {{ c.comit }} , Pas Choisi !!!  </h3>  
+        {% endif  %}
+        <br>
+      </li>
+</ul>
+  
+        {% endfor %}
+   {% endfor %}
+{%endif%}
+
+{% if not Choisi %}
+
+<h3 style="color:red;">  - Choisi Rien !!!  </h3>  
+
+{% endif %}
+
+
+
+ </div>  
+<br><br><br>    
+<h1> Finalement ,Tous Mes articles Pour  Corrige sont : </h1>
+
+                <div class="col-sm-12 text-center">
+                                  
+                         <a href="#" class="btn btn-warning"> Nombre des Articles Pour les Corriges est   : 
+                         {{ evalu.artcl_a_corrige.count }} Articles  </a> 
+                         <br>
+                    
+                </div>
+
+
+
+                <div class="table-responsive">
+                  <table class="table table-striped jambo_table bulk_action">
+                    <thead>
+                      <tr class="headings">
+                        <th>
+                                                </th>
+
+                        <th class="column-title" style="display: table-cell;">Title</th>        
+                        <th class="column-title" style="display: table-cell;">Conferance </th>
+                        <th class="column-title no-link last" style="display: table-cell;"><span class="nobr">Details</span>
+                        </th>
+                        
+                         <th class="column-title no-link last" style="display: table-cell;"><span class="nobr">Etat de cette article</span>
+                        </th>
+
+                         <th class="column-title no-link last" style="display: table-cell;"><span class="nobr">Corrige Now </span>
+                        </th>
+
+                        <th class="bulk-actions" colspan="7" style="display: none;">
+                          <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt">1 Records Selected</span> ) <i class="fa fa-chevron-down"></i></a>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+{% for art in evalu.artcl_a_corrige.all %}
+
+
+                      <tr class="even pointer">
+                        <td class="a-center ">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" checked="">
+                              <span class="form-check-sign"></span>
+                              
+                            </label>
+                          </div>                        </td>
+                        <td class=" ">{{ art.name }}</td>
+                        <td class=" ">{{art.Conferance}}</td>
+                        <td class=" last"><a href="{% url 'evaluteur:Mes_article_Final_detailles' %}">View</a>
+                        </td>
+                        </td>
+                         <td class=" last"><a href="{% url 'evaluteur:Just_Notification' %}">Mon etat & notification </a>
+                        </td>
+                      <td>
+                          {% if not art in mylist_off_article_Deja_eval %}
+
+                          <a href="{% url 'evaluteur:evaluéé' pk=art.pk %}">Corrige Now !</a>
+                        {% else %}
+                        <h6 style="color:blue;"> Cette article est deja evalueé </h6>
+                        {% endif %}
+                        </td>
+                      </tr>
+                  
+{% endfor %}
+
+
+                    </tbody>
+
+                  </table>
+                </div>
+
+      
+              </div>
+                      <div class="col-sm-12 text-center">
+               <a href="{% url 'evaluteur:dashboardeval' %}" class="btn btn-info btn-round btn-lg"> Back </a>
+               </div>
+
+              <br>
+
+
+      <div class="col-sm-12 text-right">
+     <a href="{% url 'evaluteur:MesEvaluation' %}" class="btn btn-warning">
+     Mon Evaluation !!!</a>
+     <br><br>
+          <a href="{% url 'evaluteur:Mes_evl_Comment' %}" class="btn btn-warning">
+     Voir les  Comments, !!!</a>
+                </div>
+
+               <br>
+               <p> Check you'r Email *_*  </p>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

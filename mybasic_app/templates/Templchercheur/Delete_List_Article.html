@@ -1,0 +1,59 @@
+{% extends 'Templchercheur/mainchr.html' %}
+{% load static %}
+{% block body_block %}
+ 
+
+  <div class="wrapper">
+    <div class="page">
+      <img src="{% static 'G-Admin_cherch_eval/img/path1.png' %}" class="path" >
+      <div class="container align-items-center">
+
+
+
+ 
+
+{% if articles|length > 0 %}
+
+
+    {% for conferance in conferances %}
+                
+              {% if conferance.date_Fin_conf|date:"Y-m-d" >  Now|date:"Y-m-d"  %}
+
+              {% if conferance.stop == False %}
+
+        {% for art in articles %}
+  {% if conferance == art.Conferance %}
+ 
+       {% if conferance.date_Start_poste_Artcl|date:"Y-m-d" <= Now|date:"Y-m-d" %}
+             {% if Now|date:"Y-m-d" <  conferance.date_Fin_poste_Artcl|date:"Y-m-d"  %}
+
+        <div class="btn-wrapper pt-3 color:rouge">
+          <a href="{% url 'chercheur:deleteart' art.id %}">
+            <button href="{% url 'chercheur:deleteart' art.id %}" class="btn btn-simple btn-danger" >
+              <i class="tim-icons icon-trash-simple"></i>
+               Article : {{art}}  
+            </button>
+          </a>
+        </div>
+
+ {% endif %}
+ {% endif %} 
+ {% endif %} 
+ {% endfor %}
+ {% endif %}
+
+      {% endif %}
+        {% endfor %}
+
+{% else %}
+  <h3 style="color:blue;"> Thare are no more articles for delete!    </h3>
+
+
+ {% endif %}
+        
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
