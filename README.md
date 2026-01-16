@@ -1,29 +1,19 @@
+#
 Conference Management System
-Project Overview
-A full-stack web application designed to streamline the lifecycle of scientific conference management, from initial submission to final publication.
+A web application designed to manage the end-to-end lifecycle of scientific conferences.
 
-- Core Functionalities
+Researcher Module
+Submissions: Handle initial and final camera-ready article versions.
 
-•  Researcher Module
+Notifications: Access submission guidelines and review results.
 
-Submission Workflow: Manage article submissions and final camera-ready versions.
+Reviewer Module
+Selection: Browse and select articles for peer review.
 
-Review Tracking: Access submission guidelines and real-time review notifications.
+Reviewing: Flag conflicts of interest and submit evaluation results.
 
-•  Reviewer Module
+Administrator Module
+User Management: Control accounts and system access rights.
 
-
-Article Selection: Browse and select papers for peer review.
-
-Conflict Management: Flag articles with potential conflicts of interest.
-
-Evaluation: Submit detailed reviewing results and scores.
-
-•  Administrator Module
-
-
-Access Control: Manage user accounts, roles, and system permissions.
-
-Content Management: Oversee article status updates and reviewer assignments.
-
-Final Decisions: Broadcast final acceptance/rejection notifications and conference details.
+Oversight: Manage reviewer assignments and final decision broadcasting.
+#
